@@ -1,0 +1,84 @@
+views:
+  - type: sections
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Targets
+            heading_style: title
+          - type: entities
+            entities:
+              - sensor.nutrition_weight
+              - sensor.weight_goal_statistic
+              - sensor.weight_lost
+              - sensor.weight_remaining
+              - sensor.weight_goal_progress
+              - sensor.estimated_days_to_weight_goal
+              - sensor.estimated_weight_goal_date
+      - type: grid
+        cards:
+          - type: heading
+            heading: Energy and Nutrition
+            heading_style: title
+          - type: entities
+            entities:
+              - sensor.nutrition_energy_expenditure
+              - sensor.target_calorie_deficit
+              - sensor.nutrition_calorie_target
+              - sensor.daily_calorie_target
+              - sensor.nutrition_bmr
+              - sensor.active_energy_expenditure
+              - sensor.nutrition_protein_target
+              - sensor.nutrition_fat_target
+              - sensor.nutrition_carbohydrate_target
+              - binary_sensor.nutrition_macro_budget_feasible
+      - type: grid
+        cards:
+          - type: heading
+            heading: History (7 Days)
+            heading_style: title
+          - type: history-graph
+            entities:
+              - entity: sensor.nutrition_weight
+            logarithmic_scale: false
+            expand_legend: false
+    max_columns: 4
+    title: Overview
+    cards: []
+  - type: sections
+    max_columns: 4
+    title: Configuration
+    path: configuration
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Datasources
+            heading_style: title
+          - type: entities
+            entities:
+              - entity: input_boolean.nutrition_manual_weight
+              - entity: input_number.nutrition_manual_weight_kg
+              - entity: input_boolean.nutrition_manual_energy
+              - entity: input_number.nutrition_manual_daily_energy
+              - entity: input_boolean.nutrition_manual_bmr
+              - entity: input_number.nutrition_manual_bmr_kcal
+              - entity: input_text.nutrition_bmr_source
+              - entity: input_text.nutrition_weight_source
+              - entity: input_text.nutrition_energy_source
+      - type: grid
+        cards:
+          - type: heading
+            heading: Targets & Settings
+            heading_style: title
+          - type: entities
+            entities:
+              - entity: input_number.weight_start
+              - entity: input_number.weight_goal
+              - entity: input_number.target_calorie_deficit
+              - entity: input_number.nutrition_reference_weight
+                name: Macro Reference Weight
+              - entity: input_number.nutrition_protein_factor
+                name: Protein Factor
+              - entity: input_number.nutrition_fat_factor
+                name: Fat Factor

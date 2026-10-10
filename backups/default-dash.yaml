@@ -1,0 +1,2382 @@
+title: Home
+kiosk_mode:
+  kiosk: false
+views:
+  - title: Home
+    type: sections
+    path: default_view
+    max_columns: 3
+    icon: mdi:monitor-dashboard
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Entrance
+            heading_style: title
+            icon: mdi:door
+            badges:
+              - type: entity
+                entity: sensor.weather_entrance_temperature
+              - type: entity
+                entity: sensor.weather_entrance_humidity
+              - type: entity
+                entity: binary_sensor.motionsensor_entrance_motion
+              - type: entity
+                entity: binary_sensor.door_entrance_opening
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/entrance
+          - show_current: true
+            show_forecast: true
+            type: weather-forecast
+            entity: weather.home
+            forecast_type: daily
+        column_span: 1
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: Living Room
+            icon: mdi:sofa
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/livingroom
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: true
+                entity: sensor.weather_livingroom_temperature
+              - type: entity
+                entity: sensor.weather_livingroom_humidity
+              - type: entity
+                show_state: true
+                show_icon: true
+                entity: binary_sensor.window_living_room_opening
+              - type: entity
+                show_state: false
+                show_icon: true
+                entity: binary_sensor.heating_livingroom
+                color: red
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: light.switch_stading_light_switch
+                name: Standing Light
+              - entity: light.switch_reading_light_switch
+                name: Reading Light
+              - entity: light.main_light
+                name: Main Light
+              - entity: light.livingroom_switch_1
+                name: Secondary Light
+            state_color: true
+          - type: glance
+            entities:
+              - entity: switch.arcade_switch
+                name: Arcade
+              - entity: switch.terrarien_pumpe
+                name: Terrarium Pump
+              - entity: light.terrarium
+                name: Terrarium Light
+      - type: grid
+        cards:
+          - type: heading
+            heading: Office
+            heading_style: title
+            icon: mdi:chair-rolling
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: true
+                entity: sensor.office_aq_office_temperature
+              - type: entity
+                show_state: true
+                show_icon: true
+                entity: sensor.office_aq_office_humidity
+              - type: entity
+                entity: binary_sensor.window_office_left_opening
+              - type: entity
+                entity: binary_sensor.window_office_right_opening
+              - type: entity
+                show_state: false
+                show_icon: true
+                entity: binary_sensor.heating_office
+                color: red
+              - type: entity
+                show_state: true
+                show_icon: true
+                entity: binary_sensor.everything_presence_lite_406754_occupancy
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/office
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: light.desk_left_light
+                name: Desk Left
+              - entity: light.desk_right_light_2
+                name: Desk Right
+              - entity: fan.fan_office_switch
+                name: Fan
+              - entity: switch.office_light_switch
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: light.readingnook_office_light
+                name: Nook
+              - entity: light.wled_tree
+                name: Tree
+              - entity: switch.hobby
+            state_color: false
+      - type: grid
+        cards:
+          - type: heading
+            heading: Bedroom
+            heading_style: title
+            icon: mdi:bed
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/bedroom
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: true
+                entity: sensor.aq_bedroom_temperature
+              - type: entity
+                show_state: true
+                show_icon: true
+                entity: sensor.aq_bedroom_humidity
+              - type: entity
+                entity: binary_sensor.window_bedroom_opening
+              - type: entity
+                show_state: false
+                show_icon: true
+                entity: binary_sensor.heating_bedroom
+                color: red
+          - type: glance
+            entities:
+              - entity: light.bed_lights
+              - entity: automation.sunrise_alarm
+                name: Sunrise Alarm
+              - entity: input_datetime.alarm
+                name: Wakeup Time
+              - entity: switch.bedroom_light_switch
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: select.diffusor_countdown
+                name: Countdown
+              - entity: sensor.diffusor_countdown
+                name: Time
+              - entity: select.diffusor_intensity
+                name: Intensity
+              - entity: select.diffusor_led_mode
+                name: Led Mode
+      - type: grid
+        cards:
+          - type: heading
+            heading: Kitchen
+            heading_style: title
+            icon: mdi:fridge
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/kitchen
+            badges:
+              - type: entity
+                entity: sensor.weather_kitchen_temperature
+              - type: entity
+                entity: sensor.weather_kitchen_humidity
+              - type: entity
+                entity: binary_sensor.window_kitchen_opening
+              - type: entity
+                show_state: false
+                show_icon: true
+                entity: binary_sensor.heating_kitchen
+                color: red
+          - type: glance
+            entities:
+              - entity: switch.kitchen_light_switch
+              - entity: light.kitchen_spicerack
+          - type: entities
+            entities:
+              - entity: sensor.restmull
+              - entity: sensor.gelber_sack
+              - entity: sensor.papier
+              - entity: sensor.picnic_last_order_delivery_time
+                name: Picnic Last Order
+        column_span: 1
+      - type: grid
+        cards:
+          - type: heading
+            heading: Bathroom
+            heading_style: title
+            icon: mdi:bathtub
+            badges:
+              - type: entity
+                entity: sensor.weather_bathroom_temperature
+              - type: entity
+                entity: sensor.weather_bathroom_humidity
+              - type: entity
+                show_state: false
+                show_icon: true
+                entity: binary_sensor.shower
+                color: state
+              - type: entity
+                show_state: false
+                show_icon: true
+                entity: binary_sensor.heating_bathroom
+                color: red
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/bathroom
+          - type: glance
+            entities:
+              - entity: light.ikea_rgb_bulb_bathroom_light
+          - type: entities
+            entities:
+              - entity: binary_sensor.motionsensor_bathroom_motion
+    cards: []
+    visible:
+      - user: 06b621c6a60e413b9b01c51613e943c6
+      - user: 88f0d186409040a19f280ed108321f56
+      - user: 9e5d1d4763fb4177be7991286ea022c1
+    dense_section_placement: true
+    badges:
+      - type: entity
+        show_name: false
+        show_state: true
+        show_icon: true
+        color: ''
+        entity: sun.sun
+      - type: entity
+        show_name: false
+        show_state: true
+        show_icon: true
+        color: ''
+        entity: sensor.moon
+      - type: entity
+        show_name: false
+        show_state: true
+        show_icon: true
+        color: ''
+        entity: sensor.time
+      - type: entity
+        show_name: false
+        show_state: true
+        show_icon: true
+        entity: sensor.date
+        color: ''
+  - theme: Backend-selected
+    path: consumables
+    icon: mdi:account-hard-hat
+    visible:
+      - user: 88f0d186409040a19f280ed108321f56
+      - user: 9e5d1d4763fb4177be7991286ea022c1
+    badges:
+      - entity: binary_sensor.rpi_power_status
+      - entity: binary_sensor.fritz_box_6690_cable_connection
+    cards: []
+    type: sections
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: subtitle
+            heading: Action
+            icon: mdi:gesture-tap
+        column_span: 4
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+            heading: System Health
+          - type: gauge
+            entity: sensor.system_ha_global_health_score
+            name: HAGHS
+            unit: " "
+            needle: true
+            severity:
+              green: 90
+              yellow: 75
+              red: 0
+          - type: markdown
+            title: Score Breakdown
+            content: >
+              {% set e = 'sensor.system_ha_global_health_score' %}  {% set hw =
+              state_attr(e, 'hardware_score') | int(0) %} {% set app =
+              state_attr(e,'application_score') | int(0) %} {% set score =
+              states(e) | int(0) %} | Hardware | Application | | **{{ hw
+              }}**/100 | **{{ app }}**/100 |
+
+              Formula: ({{ hw }} × 0.4) + ({{ app }} × 0.6) = {{ score }}
+          - type: markdown
+            title: 🛡️ Advisor
+            content: >
+              {% set e = 'sensor.system_ha_global_health_score' %} {% set rec =
+              state_attr(e, 'recommendations') | default('', true) %} {% if
+              states(e) in ['unavailable', 'unknown'] %}
+                ⚠️ Health Advisor sensor is offline.
+              {% elif rec not in [none, 'unknown', 'unavailable'] and '✅' not in
+              rec %}
+                {{ rec }}
+              {% else %}
+                ✅ System healthy. No recommendations.
+              {% endif %}
+          - type: markdown
+            title: 📦 Updates & Maintenance
+            content: >
+              {% set e = 'sensor.system_ha_global_health_score' %} {% set
+              updates = state_attr(e, 'pending_updates') | default([], true) |
+              list %} {% set db_mb = state_attr(e, 'db_size_mb') | float(0) %}
+              {% set keep = state_attr(e, 'recorder_keep_days') %} {% set filter
+              = state_attr(e,'recorder_filter_active') | default(false, true) %}
+              {% set psi = state_attr(e, 'psi_available') | default(false, true)
+              %} {% set _upd = '/config/updates' %} {% if updates | length > 0
+              %} {{ updates | length }} update(s) pending:
+                {% for u in updates %} &nbsp;&nbsp; • {{ u }} {% endfor %}
+                [→ Open Updates]({{ _upd }}) 
+              {% else %} 
+                ✅ All updates installed
+              {% endif %}
+
+              ***
+
+              Database: {{ db_mb | round(1) }} MB {% if db_mb == 0.0
+              %}*(external DB detected)*{% endif %} Recorder: {% if keep not in
+              [none, 'unknown'] %}purge active ({{ keep }} days){% else %}no
+              purge configured — DB may grow indefinitely{% endif %}
+
+              {{ 'Entity filter active' if filter else 'No entity filter' }}
+
+              ***
+
+              **Metric source**:  {% if psi %}
+                🟢 PSI active (CPU + RAM + I/O + Disk) — hardware score uses 4 components
+              {% else %}
+                ⚙️ Classic sensors (CPU + RAM + Disk) — hardware score uses 3 components
+              {% endif %}
+          - type: markdown
+            title: 🧟 Zombie Entities
+            content: >
+              {% set e = 'sensor.system_ha_global_health_score' %} {% set z_raw
+              = state_attr(e, 'zombie_entities') | default([], true) %} {% set
+              z_count = state_attr(e, 'zombie_count') | int(0) %}
+
+              {% if z_count == 0 %}
+
+              ✅ No zombie entities detected.
+
+              {% else %}
+
+              {% if z_raw is string %}
+                {% set z_list = z_raw.split(',') | map('trim') | list %}
+              {% else %}
+                {% set z_list = z_raw | list %}
+              {% endif %}
+
+              {% set grouped = expand(z_list) | groupby('domain') %}
+
+              **{{ z_count }} zombie(s)** across **{{ grouped | length }}
+              domain(s)**
+
+              {% if z_count > 20 %} *(showing first 20 — {{ z_count - 20 }} more
+              hidden)* {% endif %}
+
+              [→ Check Entities](/config/entities)
+
+              ---
+
+              {% for domain in grouped %}
+
+              ### {{ domain[0] | title }} ({{ domain[1] | count }})
+
+              {% for item in domain[1] %}
+                - **{{ item.entity_id }}** Device: {{ device_attr(item.entity_id, 'name') | default('unknown device', true) }} `{{ item.state }}`
+              {% endfor %}
+
+              {% endfor %}
+
+              {% endif %}
+      - type: grid
+        cards:
+          - type: heading
+            heading: Battery
+            heading_style: subtitle
+            icon: mdi:battery
+          - type: custom:battery-state-card
+            title: Weather Sensor Battery Status
+            colors:
+              steps:
+                - '#ff0000'
+                - '#ffff00'
+                - '#00ff00'
+              gradient: true
+            filter: null
+            entities:
+              - sensor.weather_bedroom_battery
+              - sensor.weather_bathroom_battery
+              - sensor.weather_livingroom_battery
+              - sensor.weather_kitchen_battery
+              - sensor.weather_office_battery
+          - type: custom:battery-state-card
+            title: Other
+            colors:
+              steps:
+                - '#ff0000'
+                - '#ffff00'
+                - '#00ff00'
+              gradient: true
+            filter: null
+            entities:
+              - entity: sensor.ikea_of_sweden_remote_control_n2_battery
+                name: Remote Office
+              - entity: sensor.ikea_of_sweden_remote_control_n2_battery_2
+                name: Remote Bedroom
+              - entity: sensor.ikea_shortcut_button_kitchen_battery
+                name: Shortcut Button Kitchen
+              - entity: sensor.motionsensor_bathroom_battery
+                name: Motionsensor Bathrooom
+              - entity: sensor.motionsensor_entrance_battery
+                name: Motionsensor Entrance
+          - type: custom:battery-state-card
+            title: Radiator Thermostat Battery Status
+            colors:
+              steps:
+                - '#ff0000'
+                - '#ffff00'
+                - '#00ff00'
+              gradient: true
+            filter: null
+            entities:
+              - entity: binary_sensor.bedroom_smart_radiator_thermostat_bedroom_battery
+                name: Bedroom
+                state_map:
+                  - from: 'off'
+                    to: 100
+                  - from: 'on'
+                    to: 25
+              - entity: binary_sensor.bathroom_smart_radiator_thermostat_bathroom_battery
+                name: Bathroom
+                state_map:
+                  - from: 'off'
+                    to: 100
+                  - from: 'on'
+                    to: 25
+              - entity: binary_sensor.livingroom_smart_radiator_thermostat_livingroom_battery
+                name: Livingroom
+                state_map:
+                  - from: 'off'
+                    to: 100
+                  - from: 'on'
+                    to: 25
+              - entity: binary_sensor.livingroom_smart_thermostat_livingroom_battery
+                name: Livingroom Thermostat
+                state_map:
+                  - from: 'off'
+                    to: 100
+                  - from: 'on'
+                    to: 25
+              - entity: binary_sensor.kitchen_smart_radiator_thermostat_kitchen_battery
+                name: Kitchen
+                state_map:
+                  - from: 'off'
+                    to: 100
+                  - from: 'on'
+                    to: 25
+              - entity: binary_sensor.office_smart_radiator_thermostat_office_left_battery
+                name: Office Left
+                state_map:
+                  - from: 'off'
+                    to: 100
+                  - from: 'on'
+                    to: 25
+              - entity: binary_sensor.office_smart_radiator_thermostat_office_right_battery
+                name: Office Right
+                state_map:
+                  - from: 'off'
+                    to: 100
+                  - from: 'on'
+                    to: 25
+      - type: grid
+        cards:
+          - type: heading
+            heading: Energy
+            heading_style: subtitle
+            icon: mdi:lightning-bolt
+          - type: vertical-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.ups_battery_charge
+                  - entity: sensor.ups_status
+                  - entity: sensor.ups_load
+              - type: gauge
+                entity: sensor.ups_battery_charge
+                min: 0
+                max: 100
+                needle: true
+                severity:
+                  green: 65
+                  yellow: 25
+                  red: 0
+          - type: entity
+            entity: sensor.poweroutage_last_10_days
+            name: Poweroutage
+          - type: entity
+            entity: sensor.poweroutage_time_last_10_days
+            name: Poweroutage
+          - type: heading
+            heading: Consumables
+            heading_style: subtitle
+            icon: mdi:cookie
+          - type: custom:battery-state-card
+            title: Printer Toner Status
+            colors:
+              steps:
+                - '#ff0000'
+                - '#ffff00'
+                - '#00ff00'
+              gradient: true
+            filter: null
+            entities:
+              - sensor.hp_color_laserjet_mfp_m277dw_black_cartridge_hp_cf400x
+              - sensor.hp_color_laserjet_mfp_m277dw_cyan_cartridge_hp_cf401x
+              - sensor.hp_color_laserjet_mfp_m277dw_yellow_cartridge_hp_cf402x
+              - sensor.hp_color_laserjet_mfp_m277dw_magenta_cartridge_hp_cf403x
+      - type: grid
+        cards:
+          - type: heading
+            heading: Internet
+            heading_style: subtitle
+            icon: mdi:web
+            badges:
+              - type: entity
+                entity: sensor.fritz_box_6690_cable_download_throughput
+              - type: entity
+                entity: sensor.fritz_box_6690_cable_upload_throughput
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.fritz_box_6690_cable_download_throughput
+              - sensor.fritz_box_6690_cable_upload_throughput
+            stat_types:
+              - mean
+              - min
+            hide_legend: true
+            logarithmic_scale: false
+            title: Throughput
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.fritz_box_6690_cable_gb_sent
+              - sensor.fritz_box_6690_cable_gb_received
+            stat_types:
+              - sum
+              - state
+              - change
+            hide_legend: true
+            title: Send/Received
+      - type: grid
+        cards:
+          - type: heading
+            heading: Automation
+            heading_style: subtitle
+            icon: mdi:robot
+        column_span: 4
+  - type: sections
+    max_columns: 4
+    title: Camper
+    path: camper
+    icon: mdi:rv-truck
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Location
+            heading_style: title
+            icon: mdi:crosshairs-gps
+          - type: map
+            grid_options:
+              columns: full
+              rows: 5
+            entities:
+              - entity: device_tracker.gunnar
+            theme_mode: auto
+          - type: entities
+            entities:
+              - entity: sensor.camper_longitude
+              - entity: sensor.camper_latitude
+      - type: grid
+        cards:
+          - type: heading
+            heading: Camper Climate
+            heading_style: title
+            icon: mdi:home-thermometer-outline
+          - type: statistics-graph
+            entities:
+              - sensor.camper_temperature
+          - type: statistics-graph
+            entities:
+              - sensor.camper_humidity
+          - type: statistics-graph
+            entities:
+              - sensor.camper_pressure
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.vrm_level
+                name:
+                  type: device
+                needle: false
+                severity:
+                  green: 80
+                  yellow: 30
+                  red: 10
+                min: 0
+                max: 100
+              - type: gauge
+                entity: sensor.vrm_level_2
+                name:
+                  type: device
+                min: 0
+                max: 100
+                severity:
+                  green: 0
+                  yellow: 50
+                  red: 80
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.vrm_state_of_charge
+                severity:
+                  green: 70
+                  yellow: 0
+                  red: 20
+                name:
+                  type: device
+              - type: gauge
+                entity: sensor.vrm_dc_loads
+          - chart_type: bar
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.vrm_battery_watts
+              - sensor.vrm_solar_chargers_power_total
+            stat_types:
+              - mean
+            hide_legend: false
+    badges:
+      - type: entity
+        show_name: false
+        show_state: true
+        show_icon: true
+        entity: sensor.vrm_gateway_last_connection
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: binary_sensor.camper_gps_api_success
+        name: GPS-API
+        icon: mdi:circle
+        color: green
+        show_entity_picture: false
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: binary_sensor.camper_temp_api_success
+        name: Temp-API
+        color: green
+        icon: mdi:circle
+    header: {}
+    cards: []
+    footer:
+      max_width: 600
+  - type: sections
+    max_columns: 4
+    title: Health
+    path: health
+    icon: mdi:medication
+    sections:
+      - type: grid
+        cards:
+          - type: statistics-graph
+            grid_options:
+              columns: 24
+              rows: auto
+            entities:
+              - entity: sensor.garmin_connect_weight
+                name: Weight
+              - entity: sensor.internal_garmin_connect_average_weight_7_days
+                name: 7d Average
+              - sensor.weight_goal_statistic
+            title: Weight Trend
+            days_to_show: 30
+            period: day
+            chart_type: line
+            stat_types:
+              - mean
+            hide_legend: false
+            expand_legend: false
+            logarithmic_scale: false
+          - type: statistics-graph
+            entities:
+              - entity: sensor.garmin_connect_bmr_calories
+                name: BMR
+              - entity: sensor.garmin_connect_burned_calories
+                name: TDEE
+            title: Daily Energy Expenditure
+            days_to_show: 14
+            period: day
+            chart_type: bar
+            stat_types:
+              - max
+            hide_legend: true
+            grid_options:
+              columns: 24
+              rows: auto
+        column_span: 4
+      - type: grid
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.weight_lost
+              - entity: sensor.weight_remaining
+              - entity: sensor.weight_goal_progress
+              - entity: sensor.estimated_weight_goal_date
+            grid_options:
+              columns: 24
+              rows: auto
+      - type: grid
+        cards:
+          - type: statistics-graph
+            title: Calorie Target
+            chart_type: bar
+            period: day
+            days_to_show: 14
+            stat_types:
+              - max
+            entities:
+              - entity: sensor.garmin_connect_burned_calories
+                name: TDEE
+              - entity: sensor.daily_calorie_target
+                name: Target
+              - entity: sensor.target_calorie_deficit
+                name: Deficit
+      - type: grid
+        cards:
+          - type: statistics-graph
+            title: Active Energy
+            chart_type: bar
+            period: day
+            days_to_show: 14
+            stat_types:
+              - max
+            entities:
+              - entity: sensor.active_energy_expenditure
+                name: Active Energy
+      - type: grid
+        cards:
+          - type: statistics-graph
+            title: Steps
+            chart_type: bar
+            period: day
+            days_to_show: 14
+            stat_types:
+              - max
+            entities:
+              - entity: sensor.garmin_connect_steps
+                name: Steps
+    badges:
+      - type: entity
+        show_name: false
+        show_state: true
+        show_icon: true
+        entity: sensor.garmin_connect_weight
+      - type: entity
+        show_name: true
+        show_state: true
+        show_icon: true
+        entity: sensor.internal_garmin_connect_average_weight_7_days
+        name:
+          type: entity
+      - type: entity
+        show_name: false
+        show_state: true
+        show_icon: true
+        entity: sensor.garmin_connect_bmi
+      - type: entity
+        show_name: true
+        show_state: true
+        show_icon: true
+        entity: sensor.garmin_connect_bmr_calories
+      - type: entity
+        show_name: true
+        show_state: true
+        show_icon: true
+        entity: sensor.garmin_connect_burned_calories
+      - type: entity
+        show_name: true
+        show_state: true
+        show_icon: true
+        entity: sensor.daily_calorie_target
+      - type: entity
+        show_name: true
+        show_state: true
+        show_icon: true
+        entity: sensor.garmin_connect_last_synced
+      - type: entity
+        entity: input_number.weight_goal
+        show_name: true
+      - type: entity
+        show_name: true
+        show_state: true
+        show_icon: true
+        entity: input_number.target_calorie_deficit
+      - type: entity
+        show_name: true
+        show_state: true
+        show_icon: true
+        entity: sensor.internal_garmin_connect_weight_change_30_days
+        name:
+          type: entity
+    footer:
+      card:
+        type: horizontal-stack
+        cards:
+          - type: entity
+            entity: sensor.garmin_connect_steps
+            name:
+              type: entity
+          - type: entity
+            entity: sensor.garmin_connect_total_sleep_duration
+            name:
+              type: entity
+          - type: entity
+            entity: sensor.garmin_connect_resting_heart_rate
+            state_color: false
+            name:
+              type: entity
+          - type: distribution
+            entities:
+              - entity: sensor.garmin_connect_steps
+                name:
+                  type: entity
+              - entity: sensor.garmin_connect_daily_step_goal
+                name:
+                  type: entity
+          - type: entity
+            entity: sensor.estimated_weight_goal_date
+            name:
+              type: entity
+      max_width: 1600
+    header:
+      layout: center
+      badges_position: top
+      badges_wrap: wrap
+  - subview: true
+    title: Entrance
+    path: entrance
+    icon: mdi:door-open
+    badges:
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Home
+        icon: mdi:home
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/default_view
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Livingroom
+        icon: mdi:sofa
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/livingroom
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Kitchen
+        icon: mdi:fridge
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/kitchen
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Office
+        icon: mdi:chair-rolling
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/office
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Entrance
+        icon: mdi:door-open
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/entrance
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Bathroom
+        icon: mdi:bathtub
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/bathroom
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Bedroom
+        icon: mdi:bed
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/bedroom
+    cards: []
+    type: sections
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Action
+            heading_style: subtitle
+            icon: mdi:gesture-tap
+        column_span: 4
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: subtitle
+            heading: ؜Weather
+            icon: mdi:weather-sunny
+          - type: custom:clock-weather-card
+            entity: weather.home
+          - type: custom:uv-index-card
+            language: en
+            show_warning: false
+            show_error: false
+            entity: zone.home
+            layout_options:
+              grid_columns: 4
+              grid_rows: 4
+      - type: grid
+        cards:
+          - type: heading
+            heading: Rain
+            heading_style: subtitle
+            icon: mdi:weather-rainy
+            badges: []
+          - type: custom:weather-radar-card
+            map_style: Satellite
+            zoom_level: 10
+            show_marker: true
+            show_range: false
+            show_zoom: false
+            square_map: false
+            show_recenter: true
+            extra_labels: false
+            show_playback: false
+            show_scale: true
+            frame_count: 24
+            data_source: RainViewer-Original
+      - type: grid
+        cards:
+          - type: heading
+            heading: Weather
+            heading_style: subtitle
+            icon: mdi:weather-sunny
+          - type: entities
+            entities:
+              - entity: sensor.aq_outdoor_temperature
+              - entity: sensor.weather_outside_dew_point
+              - entity: sensor.aq_outdoor_humidity
+              - entity: sensor.absolute_humidity_outside
+                name: Absolute Humidity
+              - entity: sensor.weather_outside_illuminance
+              - entity: sensor.weather_outside_pressure
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_entrance_temperature
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_entrance_humidity
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+      - type: grid
+        cards:
+          - type: heading
+            heading: Sensor
+            heading_style: subtitle
+            icon: mdi:eye
+          - type: entities
+            entities:
+              - entity: binary_sensor.motionsensor_entrance_motion
+                name: Motion
+              - entity: binary_sensor.door_entrance_opening
+                name: Door
+          - type: entities
+            entities:
+              - entity: sensor.restmull
+              - entity: sensor.gelber_sack
+              - entity: sensor.papier
+              - entity: sensor.picnic_start_of_next_delivery_s_slot
+                icon: mdi:cart-outline
+                name: 'Picnic '
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_entrance_pressure
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+      - type: grid
+        cards:
+          - type: heading
+            heading: Automation
+            heading_style: subtitle
+            icon: mdi:robot
+        column_span: 4
+  - title: Kitchen
+    path: kitchen
+    icon: mdi:fridge
+    subview: true
+    badges:
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Home
+        icon: mdi:home
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/default_view
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Livingroom
+        icon: mdi:sofa
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/livingroom
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Kitchen
+        icon: mdi:fridge
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/kitchen
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Office
+        icon: mdi:chair-rolling
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/office
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Entrance
+        icon: mdi:door-open
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/entrance
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Bathroom
+        icon: mdi:bathtub
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/bathroom
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Bedroom
+        icon: mdi:bed
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/bedroom
+    cards: []
+    type: sections
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Action
+            heading_style: subtitle
+            icon: mdi:gesture-tap
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.kitchen_spicerack
+            show_state: false
+        column_span: 4
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: subtitle
+            heading: Temperature
+            icon: mdi:thermometer-high
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: false
+                entity: sensor.weather_kitchen_temperature
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_kitchen_temperature
+              - sensor.smart_radiator_thermostat_kitchen_current_temperature
+              - sensor.kitchen_zone_temperature
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+          - type: custom:better-thermostat-normal-climate-card
+            entity: climate.kitchen_thermostat
+            low_battery_threshold: 10
+      - type: grid
+        cards:
+          - type: heading
+            heading: Humidity
+            heading_style: subtitle
+            icon: mdi:water-percent
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: false
+                entity: sensor.weather_kitchen_humidity
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_kitchen_humidity
+              - sensor.smart_radiator_thermostat_kitchen_current_humidity
+              - sensor.kitchen_zone_humidity
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+          - type: entity
+            entity: sensor.weather_kitchen_humidity
+            name: Current
+          - type: entity
+            entity: sensor.kitchen_absolute_humidity
+            name: Absolute
+            icon: mdi:cloud-percent
+          - type: gauge
+            entity: sensor.mold_indicator_kitchen
+            min: 0
+            max: 100
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            needle: true
+            severity:
+              green: 30
+              yellow: 60
+              red: 0
+            name: " "
+          - type: entity
+            entity: sensor.kitchen_absolute_humidity_difference
+            name: Difference
+      - type: grid
+        cards:
+          - type: heading
+            heading: Pressure
+            heading_style: subtitle
+            icon: mdi:gauge
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: false
+                entity: sensor.weather_kitchen_pressure
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_kitchen_pressure
+              - sensor.weather_outside_pressure
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: title
+      - type: grid
+        cards:
+          - type: heading
+            heading: Automation
+            heading_style: subtitle
+            icon: mdi:robot
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: automation.tea_timer
+            name: Tea Timer
+            icon: mdi:timer
+            show_state: false
+        column_span: 4
+  - title: Bathroom
+    path: bathroom
+    icon: mdi:bathtub
+    subview: true
+    badges:
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Home
+        icon: mdi:home
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/default_view
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Livingroom
+        icon: mdi:sofa
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/livingroom
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Kitchen
+        icon: mdi:fridge
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/kitchen
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Office
+        icon: mdi:chair-rolling
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/office
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Entrance
+        icon: mdi:door-open
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/entrance
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Bathroom
+        icon: mdi:bathtub
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/bathroom
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Bedroom
+        icon: mdi:bed
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/bedroom
+    cards: []
+    type: sections
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Action
+            heading_style: subtitle
+            icon: mdi:gesture-tap
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.ikea_rgb_bulb_bathroom_light
+            name: Light
+        column_span: 4
+      - type: grid
+        cards:
+          - type: heading
+            heading: Temperature
+            heading_style: subtitle
+            icon: mdi:thermometer-high
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: false
+                entity: sensor.weather_bathroom_temperature
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_bathroom_temperature
+              - sensor.smart_radiator_thermostat_bathroom_current_temperature
+              - sensor.bathroom_zone_temperature
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+          - type: custom:better-thermostat-normal-climate-card
+            entity: climate.bathroom_thermostat
+            low_battery_threshold: 10
+      - type: grid
+        cards:
+          - type: heading
+            heading: Humidity
+            heading_style: subtitle
+            icon: mdi:water-percent
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: false
+                entity: sensor.weather_bathroom_humidity
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_bathroom_humidity
+              - sensor.smart_radiator_thermostat_bathroom_current_humidity
+              - sensor.bathroom_zone_humidity
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+          - type: entity
+            entity: sensor.weather_bathroom_humidity
+            name: Current
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: entity
+            entity: sensor.bathroom_absolute_humidity
+            name: Ansolute
+          - type: gauge
+            entity: sensor.mold_indicator_bathroom
+            name: " "
+            min: 0
+            max: 100
+            severity:
+              green: 30
+              yellow: 60
+              red: 0
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            needle: true
+          - type: entity
+            entity: sensor.bathroom_absolute_humidity_difference
+            name: Difference
+      - type: grid
+        cards:
+          - type: heading
+            heading: Pressure
+            heading_style: subtitle
+            icon: mdi:gauge
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: false
+                entity: sensor.weather_bathroom_humidity
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_bathroom_pressure
+              - sensor.weather_outside_pressure
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: subtitle
+            heading: Media
+            icon: mdi:speaker
+          - type: custom:mini-media-player
+            entity: media_player.bathroom_echo_dot
+      - type: grid
+        cards:
+          - type: heading
+            heading: Automation
+            heading_style: subtitle
+            icon: mdi:robot
+        column_span: 4
+  - title: Livingroom
+    path: livingroom
+    icon: mdi:sofa
+    subview: true
+    badges:
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Home
+        icon: mdi:home
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/default_view
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Livingroom
+        icon: mdi:sofa
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/livingroom
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Kitchen
+        icon: mdi:fridge
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/kitchen
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Office
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/office
+        icon: mdi:chair-rolling
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Entrance
+        icon: mdi:door-open
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/entrance
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Bathroom
+        icon: mdi:bathtub
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/bathroom
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Bedroom
+        icon: mdi:bed
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/bedroom
+    cards: []
+    type: sections
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: subtitle
+            heading: Action
+            icon: mdi:gesture-tap
+          - show_name: true
+            show_icon: true
+            type: button
+            entity: light.main_light
+            show_state: false
+            name: Main
+          - show_name: true
+            show_icon: true
+            type: button
+            entity: light.livingroom_switch_1
+            name: Secondary
+            show_state: false
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.switch_stading_light_switch
+            name: Floor Lamp
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.switch_reading_light_switch
+            name: Reading Light
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.colorlight_light
+            name: Bar
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: switch.arcade_switch
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.terrarium
+            name: Terrarium
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            name: Pump
+            entity: switch.terrarien_pumpe
+        column_span: 4
+      - type: grid
+        cards:
+          - type: heading
+            heading: Temperature
+            heading_style: subtitle
+            icon: mdi:thermometer-low
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: false
+                entity: sensor.weather_livingroom_temperature
+                icon: ''
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_livingroom_temperature
+              - sensor.smart_radiator_thermostat_livingroom_current_temperature
+              - sensor.livingroom_zone_temperature
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+          - type: custom:better-thermostat-normal-climate-card
+            entity: climate.livingroom_thermostat
+            low_battery_threshold: 10
+      - type: grid
+        cards:
+          - type: heading
+            heading: Humidity
+            heading_style: subtitle
+            icon: mdi:water-percent
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: false
+                entity: sensor.weather_livingroom_humidity
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_livingroom_humidity
+              - sensor.smart_radiator_thermostat_livingroom_current_humidity
+              - sensor.livingroom_zone_humidity
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+          - type: entity
+            entity: sensor.weather_livingroom_humidity
+            name: Current
+          - type: entity
+            entity: sensor.livingroom_absolute_humidity
+            name: Absolute
+            icon: mdi:cloud-percent
+          - type: gauge
+            entity: sensor.mold_indicator_livingroom
+            min: 0
+            max: 100
+            needle: true
+            severity:
+              green: 30
+              yellow: 60
+              red: 0
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            name: " "
+          - type: entity
+            entity: sensor.livingroom_absolute_humidity_difference
+            name: Difference
+      - type: grid
+        cards:
+          - type: heading
+            heading: Pressure
+            heading_style: subtitle
+            icon: mdi:gauge
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: false
+                entity: sensor.weather_livingroom_pressure
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_livingroom_pressure
+              - sensor.weather_outside_pressure
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+            logarithmic_scale: false
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: subtitle
+            heading: Energy
+            icon: mdi:lightning-bolt
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.ups_battery_charge
+              - sensor.ups_load
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+          - type: entities
+            entities:
+              - entity: sensor.ups_battery_charge
+              - entity: sensor.ups_load
+              - entity: sensor.ups_status
+      - type: grid
+        cards:
+          - type: heading
+            heading: Automation
+            heading_style: subtitle
+            icon: mdi:robot
+        column_span: 4
+  - title: Office
+    path: office
+    icon: mdi:chair-rolling
+    subview: true
+    badges:
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Home
+        icon: mdi:home
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/default_view
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Livingroom
+        icon: mdi:sofa
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/livingroom
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Kitchen
+        icon: mdi:fridge
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/kitchen
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Office
+        icon: mdi:chair-rolling
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/office
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Entrance
+        icon: mdi:door-open
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/entrance
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Bathroom
+        icon: mdi:bathtub
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/bathroom
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Bedroom
+        icon: mdi:bed
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/bedroom
+    cards: []
+    type: sections
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Action
+            heading_style: subtitle
+            icon: mdi:gesture-tap
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.desk_left_light
+            name: Desk Left
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.desk_right_light_2
+            name: Desk Right
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: fan.fan_office_switch
+            name: Fan
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.readingnook_office_light
+            name: Nook
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.wled_tree
+            name: Tree
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: switch.ender3_socket_switch
+            name: Ender 3
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: switch.prusa_socket_switch
+            name: Prusa MK4
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            name: Hobby Tools
+            entity: switch.hobby
+          - show_name: true
+            show_icon: true
+            type: button
+            entity: switch.office_light_switch
+          - type: markdown
+            content: |-
+              [Octoprint Ender 3](http://belial.purgatorio.cc:5000)
+              [Octoprint Prusa MK4](http://belial.purgatorio.cc:5050)
+            grid_options:
+              columns: 6
+              rows: 2
+        column_span: 4
+      - type: grid
+        cards:
+          - type: heading
+            heading: Temperature
+            heading_style: subtitle
+            icon: mdi:thermometer
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: false
+                entity: sensor.office_aq_office_temperature
+          - type: statistics-graph
+            entities:
+              - sensor.office_aq_office_temperature
+              - sensor.smart_radiator_thermostat_office_left_current_temperature
+              - sensor.smart_radiator_thermostat_office_right_current_temperature
+              - sensor.office_aq_office_temperature
+            period: hour
+            chart_type: line
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+          - type: custom:better-thermostat-normal-climate-card
+            entity: climate.office_thermostat
+            low_battery_threshold: 10
+      - type: grid
+        cards:
+          - type: heading
+            heading: Humidity
+            heading_style: subtitle
+            icon: mdi:water-percent
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: false
+                entity: sensor.office_aq_office_humidity
+          - type: statistics-graph
+            entities:
+              - sensor.weather_office_humidity
+              - sensor.smart_radiator_thermostat_office_left_current_humidity
+              - sensor.smart_radiator_thermostat_office_right_current_humidity
+              - sensor.office_aq_office_humidity
+            period: hour
+            chart_type: line
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+            logarithmic_scale: false
+          - type: entity
+            entity: sensor.office_aq_office_humidity
+            name: Current
+          - type: entity
+            entity: sensor.office_absolute_humidity
+            name: Absolute
+          - type: gauge
+            min: 0
+            max: 100
+            severity:
+              green: 30
+              yellow: 60
+              red: 0
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            name: Mold
+            entity: sensor.office_mold_indicator
+          - type: entity
+            entity: sensor.office_absolute_humidity_difference
+            name: Difference
+      - type: grid
+        cards:
+          - type: heading
+            heading: Pressure
+            heading_style: subtitle
+            icon: mdi:gauge
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: false
+                entity: sensor.weather_office_pressure
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_office_pressure
+              - sensor.weather_outside_pressure
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+          - type: statistics-graph
+            entities:
+              - sensor.office_aq_office_carbon_dioxide
+            title: CO²
+            days_to_show: 3
+            period: 5minute
+            chart_type: line
+            stat_types:
+              - mean
+            hide_legend: false
+            logarithmic_scale: false
+      - type: grid
+        cards:
+          - type: heading
+            heading: Printer
+            heading_style: subtitle
+            icon: mdi:printer
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: true
+                entity: switch.ender3_socket_switch
+                name: Ender
+                state_content: name
+                color: state
+              - type: entity
+                show_state: true
+                show_icon: true
+                entity: switch.prusa_socket_switch
+                name: Prusa
+                color: state
+                state_content: name
+          - camera_view: live
+            type: picture-glance
+            title: Ender 3
+            image: https://demo.home-assistant.io/stub_config/kitchen.png
+            entities:
+              - entity: sensor.ender_3_actual_tool_temp
+              - entity: sensor.ender_3_actual_bed_temp
+              - entity: sensor.ender_3_job_percentage
+              - entity: button.ender_3_pause_job
+              - entity: button.ender_3_resume_job
+              - entity: button.ender_3_stop_job
+              - entity: switch.ender3_socket_switch
+            camera_image: camera.ender_3_camera
+          - camera_view: live
+            type: picture-glance
+            title: Prusa MK4
+            image: https://demo.home-assistant.io/stub_config/kitchen.png
+            entities:
+              - entity: switch.prusa_socket_switch
+              - entity: sensor.octoprint_prusa_actual_tool_temp
+              - entity: sensor.octoprint_prusa_actual_bed_temp
+              - entity: sensor.octoprint_prusa_job_percentage
+              - entity: button.octoprint_prusa_pause_job
+              - entity: button.octoprint_prusa_resume_job
+              - entity: button.octoprint_prusa_stop_job
+            camera_image: camera.octoprint_prusa_camera_2
+            visibility:
+              - condition: state
+                entity: sensor.octoprint_prusa_current_state
+                state_not: unavailable
+          - camera_view: live
+            type: picture-glance
+            title: Prusa MK4
+            image: https://demo.home-assistant.io/stub_config/kitchen.png
+            entities:
+              - entity: switch.prusa_socket_switch
+              - entity: sensor.prusalink_nozzle_temperature
+              - entity: sensor.prusalink_heatbed_temperature
+              - entity: sensor.prusalink_progress
+              - entity: button.prusalink_pause_job
+              - entity: button.prusalink_resume_job
+              - entity: button.prusalink_cancel_job
+            camera_image: camera.octoprint_prusa_camera_2
+            visibility:
+              - condition: state
+                entity: sensor.octoprint_prusa_current_state
+                state: unavailable
+      - type: grid
+        cards:
+          - type: heading
+            heading: Automation
+            heading_style: subtitle
+            icon: mdi:robot
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: automation.ender_3_auto_shutoff
+            name: Ender 3 Auto Shutoff
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: automation.prusa_3d_automation
+            name: Prusa MK4 Autoshutoff
+        column_span: 4
+  - title: Bedroom
+    path: bedroom
+    icon: mdi:bed
+    subview: true
+    badges:
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Home
+        icon: mdi:home
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/default_view
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Livingroom
+        icon: mdi:sofa
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/livingroom
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Kitchen
+        icon: mdi:fridge
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/kitchen
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Office
+        icon: mdi:chair-rolling
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/office
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Entrance
+        icon: mdi:door-open
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/entrance
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Bathroom
+        icon: mdi:bathtub
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/bathroom
+      - type: entity
+        show_name: true
+        show_state: false
+        show_icon: true
+        entity: input_number.visibility_helper
+        color: ''
+        name: Bedroom
+        icon: mdi:bed
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/bedroom
+    cards: []
+    type: sections
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Action
+            heading_style: subtitle
+            icon: mdi:gesture-tap
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.bed_lights
+            name: Bedroom Lights
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.ikea_of_sweden_tradfri_bulb_e27_cws_806lm_light
+            name: Bed Left
+          - show_name: true
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: light.ikea_rgb_bulb_bedroom_right_light_2
+            name: Bed Right
+        column_span: 4
+      - type: grid
+        cards:
+          - type: heading
+            heading: Temperature
+            heading_style: subtitle
+            icon: mdi:thermometer
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: false
+                entity: sensor.aq_bedroom_temperature
+          - type: statistics-graph
+            entities:
+              - sensor.weather_bedroom_temperature
+              - sensor.smart_radiator_thermostat_bedroom_current_temperature
+              - sensor.aq_bedroom_temperature
+            period: hour
+            chart_type: line
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+          - type: custom:better-thermostat-normal-climate-card
+            entity: climate.bedroom_thermostat
+            low_battery_threshold: 10
+      - type: grid
+        cards:
+          - type: heading
+            heading: Humidity
+            heading_style: subtitle
+            icon: mdi:water-percent
+          - type: statistics-graph
+            entities:
+              - sensor.weather_bedroom_humidity
+              - sensor.smart_radiator_thermostat_bedroom_current_humidity
+              - sensor.aq_bedroom_humidity
+            period: hour
+            chart_type: line
+            stat_types:
+              - mean
+              - max
+              - min
+            hide_legend: true
+          - type: entity
+            entity: sensor.aq_bedroom_humidity
+            name: Current
+          - type: entity
+            entity: sensor.bedroom_absolute_humidity
+            name: Absolute
+            icon: mdi:cloud-percent
+          - type: gauge
+            entity: sensor.mold_indicator_bedroom
+            name: Air Quality
+            min: 0
+            max: 100
+            severity:
+              green: 0
+              yellow: 60
+              red: 70
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            needle: true
+          - type: entity
+            entity: sensor.bedroom_absolute_humidity_difference
+            name: Difference
+      - type: grid
+        cards:
+          - type: heading
+            heading: Pressure
+            heading_style: subtitle
+            icon: mdi:gauge
+          - chart_type: line
+            period: hour
+            type: statistics-graph
+            entities:
+              - sensor.weather_bedroom_pressure
+              - sensor.weather_outside_pressure
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+      - type: grid
+        cards:
+          - type: heading
+            heading_style: subtitle
+            heading: Devices
+            icon: mdi:cog
+            badges:
+              - type: entity
+                show_state: true
+                show_icon: true
+                entity: switch.diffusor
+                name: Diffusor
+                color: state
+                state_content: name
+          - camera_view: auto
+            type: picture-glance
+            title: Diffusor
+            image: /api/image/serve/ce5f44393ba596f80c2a167e12df7eba/512x512
+            entities:
+              - entity: select.diffusor_intensity
+              - entity: select.diffusor_led_mode
+              - entity: switch.diffusor
+              - entity: select.diffusor_countdown
+              - entity: light.diffusor_led
+            tap_action:
+              action: perform-action
+              perform_action: switch.toggle
+              target:
+                entity_id:
+                  - switch.diffusor
+                  - switch.diffusor_led
+              data: {}
+          - type: custom:mini-media-player
+            entity: media_player.bedroom_tv_2
+            visibility:
+              - condition: state
+                entity: media_player.bedroom_tv_2
+                state_not: unavailable
+      - type: grid
+        cards:
+          - type: heading
+            heading: Automation
+            heading_style: subtitle
+            icon: mdi:robot
+          - type: glance
+            entities:
+              - entity: automation.sunrise_alarm
+              - entity: input_datetime.alarm
+        column_span: 4
