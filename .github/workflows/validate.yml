@@ -1,14 +1,37 @@
-name: Validate YAML
+name: Validate Home Assistant Package
+
 on:
   push:
+    branches: [main]
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
-  yaml:
+  yaml-lint:
+    name: YAML syntax and style
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: pip install PyYAML
-      - run: python tests/validate_yaml.py
+      - name: Install yamllint
+        run: python -m pip install yamllint==1.37.1
+      - name: Lint project YAML
+        run: yamllint -c .yamllint.yml packages dashboards tests/ha-config .github/workflows
+
+  home-assistant-config:
+    name: Home Assistant configuration check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare isolated Home Assistant configuration
+        run: |
+          mkdir -p tests/ha-config/packages
+          cp packages/nutrition.yaml tests/ha-config/packages/nutrition.yaml
+      - name: Validate using Home Assistant Core
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/tests/ha-config:/config" \
+            ghcr.io/home-assistant/home-assistant:2026.9.4 \
+            python -m homeassistant --script check_config --config /config

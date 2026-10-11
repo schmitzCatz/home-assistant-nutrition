@@ -22,16 +22,23 @@ views:
             heading_style: title
           - type: entities
             entities:
-              - sensor.nutrition_energy_expenditure
-              - sensor.target_calorie_deficit
-              - sensor.nutrition_calorie_target
-              - sensor.daily_calorie_target
-              - sensor.nutrition_bmr
-              - sensor.active_energy_expenditure
-              - sensor.nutrition_protein_target
-              - sensor.nutrition_fat_target
-              - sensor.nutrition_carbohydrate_target
-              - binary_sensor.nutrition_macro_budget_feasible
+              - entity: sensor.nutrition_energy_expenditure
+                name: Energy Expenditure
+              - entity: sensor.target_calorie_deficit
+              - entity: sensor.nutrition_calorie_target
+                name: Calorie Target
+              - entity: sensor.daily_calorie_target
+              - entity: sensor.nutrition_bmr
+                name: Basal Metabolic Rate
+              - entity: sensor.active_energy_expenditure
+              - entity: sensor.nutrition_protein_target
+                name: Protein Target
+              - entity: sensor.nutrition_fat_target
+                name: Fat Target
+              - entity: sensor.nutrition_carbohydrate_target
+                name: Carbohydrate Target
+              - entity: binary_sensor.nutrition_macro_budget_feasible
+                name: Macro Budget Feasible
       - type: grid
         cards:
           - type: heading
@@ -40,6 +47,7 @@ views:
           - type: history-graph
             entities:
               - entity: sensor.nutrition_weight
+                name: Weight
             logarithmic_scale: false
             expand_legend: false
     max_columns: 4
@@ -58,11 +66,17 @@ views:
           - type: entities
             entities:
               - entity: input_boolean.nutrition_manual_weight
+                name: Use Manual Weight
               - entity: input_number.nutrition_manual_weight_kg
+                name: Manual Weight
               - entity: input_boolean.nutrition_manual_energy
+                name: Use Manual Daily Energy Budget
               - entity: input_number.nutrition_manual_daily_energy
+                name: Manuel Daily Energy Budget
               - entity: input_boolean.nutrition_manual_bmr
+                name: Use Manuel BMR
               - entity: input_number.nutrition_manual_bmr_kcal
+                name: Use Manuel BMR
               - entity: input_text.nutrition_bmr_source
               - entity: input_text.nutrition_weight_source
               - entity: input_text.nutrition_energy_source
