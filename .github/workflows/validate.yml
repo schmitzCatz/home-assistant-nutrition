@@ -23,15 +23,21 @@ jobs:
   home-assistant-config:
     name: Home Assistant configuration check
     runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/home-assistant/home-assistant:2026.9.4
+
     steps:
       - uses: actions/checkout@v4
-      - name: Prepare isolated Home Assistant configuration
+
+      - name: Prepare configuration
         run: |
-          mkdir -p tests/ha-config/packages
-          cp packages/nutrition.yaml tests/ha-config/packages/nutrition.yaml
-      - name: Validate using Home Assistant Core
+          mkdir -p /tmp/ha-config/packages
+          cp tests/ha-config/configuration.yaml /tmp/ha-config/
+          cp packages/nutrition.yaml /tmp/ha-config/packages/
+
+      - name: Validate configuration
         run: |
-          docker run --rm \
-            -v "${{ github.workspace }}/tests/ha-config:/config" \
-            ghcr.io/home-assistant/home-assistant:2026.9.4 \
-            python -m homeassistant --script check_config --config /config
+          python -m homeassistant \
+            --script check_config \
+            --config /tmp/ha-config
