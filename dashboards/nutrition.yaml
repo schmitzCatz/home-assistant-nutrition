@@ -96,3 +96,4 @@ views:
                 name: Protein Factor
               - entity: input_number.nutrition_fat_factor
                 name: Fat Factor
+                
