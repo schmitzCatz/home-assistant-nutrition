@@ -1,6 +1,6 @@
-input_text: !include helpers/input_text.yml
-input_boolean: !include helpers/input_boolean.yml
-input_number: !include helpers/input_number.yml
+input_text: !include helpers/input_text.yaml
+input_boolean: !include helpers/input_boolean.yaml
+input_number: !include helpers/input_number.yaml
 sensors: !include_dir_merge_list sensors/
 template: !include_dir_merge_list templates/
 automation: !include_dir_merge_list automations/
