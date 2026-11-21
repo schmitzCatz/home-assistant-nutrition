@@ -1,0 +1,21 @@
+- sensor:
+    - name: Energy Expenditure
+      unique_id: ha_nutrition_energy_expenditure
+      default_entity_id: sensor.nutrition_energy_expenditure
+      icon: mdi:fire
+      unit_of_measurement: kcal
+      state_class: measurement
+
+      availability: >-
+        {% set manual = is_state('input_boolean.nutrition_manual_energy', 'on') %}
+        {% set source = states('input_text.nutrition_energy_source') %}
+        {% set value = states('input_number.nutrition_manual_daily_energy')
+            if manual else states(source) %}
+        {{ is_number(value) and (value | float(0)) > 0 }}
+
+      state: >-
+        {% set manual = is_state('input_boolean.nutrition_manual_energy', 'on') %}
+        {% set source = states('input_text.nutrition_energy_source') %}
+        {% set value = states('input_number.nutrition_manual_daily_energy')
+            if manual else states(source) %}
+        {{ value | float(0) | round(0) }}
