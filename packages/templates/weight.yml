@@ -1,0 +1,17 @@
+- sensor:
+    - name: Weight
+      unique_id: ha_nutrition_weight
+      default_entity_id: sensor.nutrition_weight
+      icon: mdi:scale-bathroom
+      device_class: weight
+      state_class: measurement
+      unit_of_measurement: kg
+      availability: >-
+        {% set manual = is_state('input_boolean.nutrition_manual_weight', 'on') %}
+        {% set src = states('input_text.nutrition_weight_source') %}
+        {% set raw = states('input_number.nutrition_manual_weight_kg') if manual else states(src) %}
+        {{ (manual or src.startswith('sensor.')) and is_number(raw) and (raw | float(0)) > 0 }}
+      state: >-
+        {% set src = states('input_text.nutrition_weight_source') %}
+        {% set raw = states('input_number.nutrition_manual_weight_kg') if is_state('input_boolean.nutrition_manual_weight', 'on') else states(src) %}
+        {{ raw | float | round(1) }}

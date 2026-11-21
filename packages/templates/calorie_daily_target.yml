@@ -1,0 +1,11 @@
+- sensor:
+    - name: Daily Calorie Target
+      unique_id: ha_nutrition_daily_calorie_target
+      default_entity_id: sensor.daily_calorie_target
+      icon: mdi:food-apple
+      unit_of_measurement: kcal
+      state_class: measurement
+      availability: >-
+        {{ is_number(states('sensor.nutrition_calorie_target')) }}
+      state: >-
+        {{ states('sensor.nutrition_calorie_target') | float | round(0) }}

@@ -1,0 +1,15 @@
+nutrition_bmr_source:
+  name: BMR Source Entity
+  initial: sensor.garmin_connect_bmr_calories
+  max: 255
+  icon: mdi:link-variant
+nutrition_weight_source:
+  name: Weight Source Entity
+  initial: sensor.garmin_connect_weight
+  max: 255
+  icon: mdi:link-variant
+nutrition_energy_source:
+  name: Daily Energy Source Entity
+  initial: sensor.garmin_connect_burned_calories
+  max: 255
+  icon: mdi:link-variant

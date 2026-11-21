@@ -1,0 +1,15 @@
+- sensor:
+    - name: Active Energy Expenditure
+      unique_id: ha_nutrition_active_energy_expenditure
+      default_entity_id: sensor.active_energy_expenditure
+      icon: mdi:run
+      unit_of_measurement: kcal
+      state_class: measurement
+      availability: >-
+        {{ is_number(states('sensor.nutrition_energy_expenditure'))
+            and is_number(states('sensor.nutrition_bmr'))
+            and (states('sensor.nutrition_energy_expenditure') | float(0)) > 0
+            and (states('sensor.nutrition_bmr') | float(0)) > 0 }}
+      state: >-
+        {{ (states('sensor.nutrition_energy_expenditure') | float(0)
+            - states('sensor.nutrition_bmr') | float(0)) | round(0) }}

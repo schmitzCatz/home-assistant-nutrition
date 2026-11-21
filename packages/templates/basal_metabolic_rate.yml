@@ -1,0 +1,17 @@
+# Rate of energy expenditure by an endotherm at rest
+- sensor:
+    - name: Basal metabolic rate
+      unique_id: ha_nutrition_bmr
+      default_entity_id: sensor.nutrition_bmr
+      icon: mdi:fire
+      unit_of_measurement: kcal
+      state_class: measurement
+      availability: >-
+        {% set manual = is_state('input_boolean.nutrition_manual_bmr', 'on') %}
+        {% set src = states('input_text.nutrition_bmr_source') %}
+        {% set raw = states('input_number.nutrition_manual_bmr_kcal') if manual else states(src) %}
+        {{ (manual or src.startswith('sensor.')) and is_number(raw) and (raw | float(0)) > 0 }}
+      state: >-
+        {% set src = states('input_text.nutrition_bmr_source') %}
+        {% set raw = states('input_number.nutrition_manual_bmr_kcal') if is_state('input_boolean.nutrition_manual_bmr', 'on') else states(src) %}
+        {{ raw | float | round(0) }}

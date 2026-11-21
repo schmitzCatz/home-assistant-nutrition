@@ -1,0 +1,10 @@
+- sensor:
+    - name: Protein Target
+      unique_id: ha_nutrition_protein_target
+      default_entity_id: sensor.nutrition_protein_target
+      unit_of_measurement: g
+      state_class: measurement
+      availability: >-
+        {{ is_number(states('input_number.nutrition_reference_weight')) and is_number(states('input_number.nutrition_protein_factor')) }}
+      state: >-
+        {{ (states('input_number.nutrition_reference_weight') | float * states('input_number.nutrition_protein_factor') | float) | round(0) }}

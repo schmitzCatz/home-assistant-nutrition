@@ -1,0 +1,11 @@
+- sensor:
+    - name: Carbohydrate Target
+      unique_id: ha_nutrition_carbohydrate_target
+      default_entity_id: sensor.nutrition_carbohydrate_target
+      unit_of_measurement: g
+      state_class: measurement
+      availability: >-
+        {{ is_number(states('sensor.nutrition_calorie_target')) and is_number(states('sensor.nutrition_protein_target')) and is_number(states('sensor.nutrition_fat_target')) }}
+      state: >-
+        {% set remaining = states('sensor.nutrition_calorie_target') | float - states('sensor.nutrition_protein_target') | float * 4 - states('sensor.nutrition_fat_target') | float * 9 %}
+        {{ ([remaining / 4, 0] | max) | round(0) }}

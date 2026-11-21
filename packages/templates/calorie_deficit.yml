@@ -1,0 +1,11 @@
+- sensor:
+    - name: Target Calorie Deficit
+      unique_id: ha_nutrition_legacy_target_calorie_deficit
+      default_entity_id: sensor.target_calorie_deficit
+      icon: mdi:fire
+      unit_of_measurement: kcal
+      state_class: measurement
+      availability: >-
+        {{ is_number(states('sensor.nutrition_energy_expenditure')) and is_number(states('input_number.target_calorie_deficit')) }}
+      state: >-
+        {{ (states('sensor.nutrition_energy_expenditure') | float * states('input_number.target_calorie_deficit') | float / 100) | round(0) }}

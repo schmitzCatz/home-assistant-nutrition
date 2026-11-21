@@ -1,0 +1,11 @@
+nutrition_manual_bmr:
+  name: Nutrition Use Manual BMR
+  initial: false
+  icon: mdi:fire
+nutrition_manual_weight:
+  name: Nutrition Use Manual Weight
+  icon: mdi:scale-bathroom
+nutrition_manual_energy:
+  name: Nutrition Use Manual Daily Energy
+  initial: true
+  icon: mdi:fire
