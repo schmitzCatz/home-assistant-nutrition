@@ -1,0 +1,24 @@
+- sensor:
+    - name: Estimated Days to Weight Goal
+      unique_id: ha_nutrition_estimated_days_to_weight_goal
+      default_entity_id: sensor.estimated_days_to_weight_goal
+      icon: mdi:calendar-clock
+      unit_of_measurement: d
+      state_class: measurement
+      availability: >-
+        {{ is_number(states('sensor.nutrition_weight'))
+            and is_number(states('input_number.weight_goal'))
+            and is_number(states('sensor.target_calorie_deficit'))
+            and (states('sensor.nutrition_weight') | float(0)) > 0
+            and (states('input_number.weight_goal') | float(0)) > 0
+            and ((states('sensor.nutrition_weight') | float(0)) <= (states('input_number.weight_goal') | float(0))
+                or (states('sensor.target_calorie_deficit') | float(0)) > 0) }}
+      state: >-
+        {% set current = states('sensor.nutrition_weight') | float %}
+        {% set goal = states('input_number.weight_goal') | float %}
+        {% set deficit = states('sensor.target_calorie_deficit') | float %}
+        {% if current <= goal %}
+          0
+        {% else %}
+          {{ ((current - goal) * 7700 / deficit) | round(0) | int }}
+        {% endif %}

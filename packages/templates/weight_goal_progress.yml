@@ -1,0 +1,14 @@
+- sensor:
+    - name: Weight Goal Progress
+      unique_id: ha_nutrition_legacy_weight_goal_progress
+      default_entity_id: sensor.weight_goal_progress
+      icon: mdi:progress-check
+      unit_of_measurement: '%'
+      state_class: measurement
+      availability: >-
+        {{ is_number(states('input_number.weight_start')) and is_number(states('input_number.weight_goal')) and is_number(states('sensor.nutrition_weight')) and (states('input_number.weight_start') | float) != (states('input_number.weight_goal') | float) }}
+      state: >-
+        {% set start = states('input_number.weight_start') | float %}
+        {% set goal = states('input_number.weight_goal') | float %}
+        {% set current = states('sensor.nutrition_weight') | float %}
+        {{ ([[((current - start) / (goal - start) * 100), 0] | max, 100] | min) | round(1) }}

@@ -1,0 +1,10 @@
+- sensor:
+    - name: Calorie Target
+      unique_id: ha_nutrition_calorie_target
+      default_entity_id: sensor.nutrition_calorie_target
+      unit_of_measurement: kcal
+      state_class: measurement
+      availability: >-
+        {{ is_number(states('sensor.nutrition_energy_expenditure')) and is_number(states('sensor.target_calorie_deficit')) }}
+      state: >-
+        {{ (states('sensor.nutrition_energy_expenditure') | float - states('sensor.target_calorie_deficit') | float) | round(0) }}

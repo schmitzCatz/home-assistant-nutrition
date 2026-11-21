@@ -1,0 +1,11 @@
+- sensor:
+    - name: Weight Lost
+      unique_id: ha_nutrition_legacy_weight_lost
+      default_entity_id: sensor.weight_lost
+      icon: mdi:scale-bathroom
+      unit_of_measurement: kg
+      state_class: measurement
+      availability: >-
+        {{ is_number(states('input_number.weight_start')) and is_number(states('sensor.nutrition_weight')) }}
+      state: >-
+        {{ (states('input_number.weight_start') | float - states('sensor.nutrition_weight') | float) | round(1) }}

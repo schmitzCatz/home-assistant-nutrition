@@ -1,0 +1,10 @@
+- sensor:
+    - name: Estimated Weight Goal Date
+      unique_id: ha_nutrition_estimated_weight_goal_date
+      default_entity_id: sensor.estimated_weight_goal_date
+      icon: mdi:calendar-check
+      device_class: date
+      availability: >-
+        {{ is_number(states('sensor.estimated_days_to_weight_goal')) }}
+      state: >-
+        {{ (today_at() + timedelta(days=states('sensor.estimated_days_to_weight_goal') | int(0))).date().isoformat() }}

@@ -33,7 +33,7 @@ jobs:
         run: |
           mkdir -p /tmp/ha-config/packages
           cp tests/ha-config/configuration.yaml /tmp/ha-config/
-          cp packages/nutrition.yaml /tmp/ha-config/packages/
+          cp -a packages/. /tmp/ha-config/packages/
 
       - name: Validate configuration
         run: |
@@ -53,4 +53,4 @@ jobs:
       - name: Install test dependencies
         run: python -m pip install -r requirements-test.txt
       - name: Test Home Assistant templates
-        run: python -m pytest -q tests/test_nutrition_templates.py
+        run: python -m pytest -q tests/

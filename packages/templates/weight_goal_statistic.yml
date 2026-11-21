@@ -1,0 +1,11 @@
+- sensor:
+    - name: Weight Goal Statistic
+      unique_id: ha_nutrition_weight_goal_statistic
+      default_entity_id: sensor.weight_goal_statistic
+      icon: mdi:flag-checkered
+      unit_of_measurement: kg
+      state_class: measurement
+      availability: >-
+        {{ is_number(states('input_number.weight_goal')) }}
+      state: >-
+        {{ states('input_number.weight_goal') | float | round(1) }}
