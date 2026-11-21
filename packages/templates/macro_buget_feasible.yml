@@ -1,9 +1,9 @@
 - binary_sensor:
-      - name: Macro Budget Feasible
-        unique_id: ha_nutrition_macro_budget_feasible
-        default_entity_id: binary_sensor.nutrition_macro_budget_feasible
-        icon: mdi:check-circle-outline
-        availability: >-
-          {{ is_number(states('sensor.nutrition_calorie_target')) and is_number(states('sensor.nutrition_protein_target')) and is_number(states('sensor.nutrition_fat_target')) }}
-        state: >-
-          {{ states('sensor.nutrition_calorie_target') | float >= (states('sensor.nutrition_protein_target') | float * 4 + states('sensor.nutrition_fat_target') | float * 9) }}
+    - name: Macro Budget Feasible
+      unique_id: ha_nutrition_macro_budget_feasible
+      default_entity_id: binary_sensor.nutrition_macro_budget_feasible
+      icon: mdi:check-circle-outline
+      availability: >-
+        {{ is_number(states('sensor.nutrition_calorie_target')) and is_number(states('sensor.nutrition_protein_target')) and is_number(states('sensor.nutrition_fat_target')) }}
+      state: >-
+        {{ states('sensor.nutrition_calorie_target') | float >= (states('sensor.nutrition_protein_target') | float * 4 + states('sensor.nutrition_fat_target') | float * 9) }}
